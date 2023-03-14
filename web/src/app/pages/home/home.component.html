@@ -1,0 +1,24 @@
+<div class="app-container">
+    <app-header></app-header>
+    <div class="page-container">
+        <div class="question-container">
+            <form [formGroup]='form_group' class="form-container">
+                <mat-form-field class="example-full-width">
+                    <textarea placeholder='Please ask anything!' matInput formControlName="input_question"></textarea>
+                </mat-form-field>
+            </form>
+            <div class="button-container">
+                <button [disabled]='!this.form_group.valid' (click)='on_send()' color='primary' mat-raised-button
+                    class='send-button'>
+                    Send
+                </button>
+                <button (click)='on_save()' color='primary' mat-raised-button class='send-button'>
+                    Save
+                </button>
+            </div>
+        </div>
+        <div class="response-container">
+            <p>{{this.response}}</p>
+        </div>
+    </div>
+</div>
