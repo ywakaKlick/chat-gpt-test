@@ -1,6 +1,9 @@
 <div class="app-container">
     <app-header></app-header>
     <div class="page-container">
+        <div class="button-container">
+            <button mat-flat-button color='primary' (click)="on_export()">Export</button>
+        </div>
         <div *ngIf='this.favorites?.length' class='card-container'>
             <mat-card *ngFor="let favorite of favorites ">
                 <mat-card-header>

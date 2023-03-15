@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FavoriteService } from 'src/app/services/favorite.service';
 import { Favorite } from 'src/app/model/favorite';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-favorite',
@@ -29,6 +30,17 @@ export class FavoriteComponent {
   async refresh_favorites() {
     try {
       this.favorites = await this.favorite_service.get_favorites();
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async on_export() {
+    try {
+      const data = await this.favorite_service.export_favorites();
+      if (!data) return;
+
+      saveAs(data, `favorites.json`);
     } catch (e) {
       console.log(e);
     }

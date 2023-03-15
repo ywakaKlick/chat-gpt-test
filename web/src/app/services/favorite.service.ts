@@ -38,4 +38,13 @@ export class FavoriteService {
       throw e;
     }
   }
+
+  async export_favorites() {
+    try {
+      const url = `${environment.api}/favorite/export`
+      return await this.http.get(url, { responseType: 'blob' }).pipe(take(1)).toPromise();
+    } catch (e) {
+      throw e;
+    }
+  }
 }

@@ -1,3 +1,13 @@
+.button-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+        margin-bottom: 20px;
+    }
+}
+
 .card-container {
     width: 100%;
 }
