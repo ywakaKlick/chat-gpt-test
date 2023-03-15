@@ -15,13 +15,15 @@ import { MatCardModule } from '@angular/material/card';
 
 import { HeaderComponent } from './views/header/header.component';
 import { FavoriteComponent } from './pages/favorite/favorite.component';
+import { ScrapingComponent } from './pages/scraping/scraping.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     HeaderComponent,
-    FavoriteComponent
+    FavoriteComponent,
+    ScrapingComponent
   ],
   imports: [
     BrowserModule,

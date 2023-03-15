@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ChatGptService } from 'src/app/services/chat-gpt.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FavoriteService } from 'src/app/services/favorite.service';
+import { ScrapingService } from 'src/app/services/scraping.service';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +17,7 @@ export class HomeComponent {
     input_question: new FormControl('', [Validators.required]),
   });
 
-  constructor(private chatGptService: ChatGptService, private favorite_service: FavoriteService) { }
+  constructor(private chatGptService: ChatGptService, private favorite_service: FavoriteService, private scraping_service: ScrapingService) { }
 
   async ngOnInit(): Promise<void> {
 
