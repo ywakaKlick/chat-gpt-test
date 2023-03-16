@@ -15,9 +15,12 @@
                 <button (click)='on_save()' color='primary' mat-raised-button class='send-button'>
                     Save
                 </button>
+                <button (click)='on_clear()' color='primary' mat-raised-button class='send-button'>
+                    Clear
+                </button>
             </div>
         </div>
-        <div class="response-container">
+        <div *ngIf="this.response" class="response-container">
             <p>{{this.response}}</p>
         </div>
     </div>

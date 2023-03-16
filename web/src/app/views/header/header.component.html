@@ -3,13 +3,32 @@
         Chat GPT Demo App
     </button>
     <span class="example-spacer"></span>
-    <button color="primary" mat-flat-button (click)="on_navigate('/home')">
-        Home
-    </button>
-    <button color="primary" mat-flat-button (click)="on_navigate('/favorite')">
-        Favorite
-    </button>
-    <button color="primary" mat-flat-button (click)="on_navigate('/scraping')">
-        Scraping
-    </button>
+    <div class="nav-container">
+        <button color="primary" mat-flat-button (click)="on_navigate('/home')">
+            Home
+        </button>
+        <button color="primary" mat-flat-button (click)="on_navigate('/favorite')">
+            Favorite
+        </button>
+        <button color="primary" mat-flat-button (click)="on_navigate('/scraping')">
+            Scraping
+        </button>
+    </div>
+    <!-- menu bar for mobile screen -->
+    <div class="menu-icon">
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button (click)="on_navigate('/home')" mat-menu-item>
+                <span>Home</span>
+            </button>
+            <button (click)="on_navigate('/favorite')" mat-menu-item>
+                <span>Favorite</span>
+            </button>
+            <button (click)="on_navigate('/scraping')" mat-menu-item>
+                <span>Scraping</span>
+            </button>
+        </mat-menu>
+    </div>
 </mat-toolbar>

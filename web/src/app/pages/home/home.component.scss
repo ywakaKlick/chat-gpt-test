@@ -4,7 +4,7 @@
     flex-direction: column;
 }
 
-.form-container{
+.form-container {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -13,7 +13,8 @@
 .button-container {
     display: flex;
     justify-content: center;
-    button{
+
+    button {
         margin: 0 20px;
     }
 }
@@ -22,5 +23,11 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    background-color: rgb(209, 242, 254);
     margin-top: 30px;
+    border-radius: 15px;
+
+    p {
+        padding: 30px;
+    }
 }

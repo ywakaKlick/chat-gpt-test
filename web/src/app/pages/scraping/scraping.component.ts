@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ScrapingService } from 'src/app/services/scraping.service';
 import { saveAs } from 'file-saver';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-scraping',
@@ -9,7 +10,7 @@ import { saveAs } from 'file-saver';
 })
 export class ScrapingComponent {
 
-  constructor(private scraping_service: ScrapingService) { }
+  constructor(private scraping_service: ScrapingService, private snackbar: MatSnackBar) { }
 
   async on_export(type: string) {
     try {
@@ -17,9 +18,10 @@ export class ScrapingComponent {
       if (!data) return;
 
       saveAs(data, `careers_open_ai.${type}`)
-
+      this.snackbar.open('Successfully exported!', undefined, { duration: 3000 })
     } catch (e) {
       console.log(e);
+      this.snackbar.open('An error occurred while exporting', undefined, { duration: 3000 })
     }
   }
 }

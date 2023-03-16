@@ -12,6 +12,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { HeaderComponent } from './views/header/header.component';
 import { FavoriteComponent } from './pages/favorite/favorite.component';
@@ -36,7 +39,10 @@ import { ScrapingComponent } from './pages/scraping/scraping.component';
     MatButtonModule,
     MatToolbarModule,
     ReactiveFormsModule,
-    MatCardModule
+    MatCardModule,
+    MatMenuModule,
+    MatIconModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

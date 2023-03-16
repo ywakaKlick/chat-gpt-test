@@ -4,10 +4,24 @@ mat-toolbar {
     height: 50px;
 }
 
+.nav-container {
+    @media only screen and (max-width: 500px) {
+        display: none;
+    }
+}
+
 .example-spacer {
     flex: 1 1 auto;
 }
 
 .btn-title {
     font-size: large;
+}
+
+.menu-icon {
+    display: none;
+
+    @media only screen and (max-width: 500px) {
+        display: block;
+    }
 }

@@ -18,9 +18,8 @@ export class ChatGptService {
     const response: any = await openai.createCompletion({
       model: "text-davinci-003",
       prompt: message,
-      max_tokens: 100,
+      max_tokens: 1000,
       temperature: 0.5,
-
     });
     return response.data.choices[0].text;
   }

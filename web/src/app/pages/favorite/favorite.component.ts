@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FavoriteService } from 'src/app/services/favorite.service';
 import { Favorite } from 'src/app/model/favorite';
 import { saveAs } from 'file-saver';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-favorite',
@@ -12,7 +13,7 @@ import { saveAs } from 'file-saver';
 export class FavoriteComponent {
   favorites?: Favorite[];
 
-  constructor(private favorite_service: FavoriteService) { }
+  constructor(private favorite_service: FavoriteService, private snackbar: MatSnackBar) { }
 
   async ngOnInit(): Promise<void> {
     await this.refresh_favorites();
@@ -22,8 +23,10 @@ export class FavoriteComponent {
     try {
       await this.favorite_service.delete_favorite(id);
       await this.refresh_favorites();
+      this.snackbar.open('Successfully deleted!', undefined, { duration: 3000 })
     } catch (e) {
       console.log(e);
+      this.snackbar.open('An error occurred deleting a favorite', undefined, { duration: 3000 })
     }
   }
 
@@ -41,8 +44,10 @@ export class FavoriteComponent {
       if (!data) return;
 
       saveAs(data, `favorites.json`);
+      this.snackbar.open('Successfully exported!', undefined, { duration: 3000 })
     } catch (e) {
       console.log(e);
+      this.snackbar.open('An error occurred while exporting', undefined, { duration: 3000 })
     }
   }
 }
