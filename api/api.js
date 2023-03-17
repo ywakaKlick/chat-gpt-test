@@ -14,15 +14,17 @@ const save_favorite_endpoint = require('./endpoints/save_favorite.endpoint');
 const delete_favorite_endpoint = require('./endpoints/delete_favorite.endpoint');
 
 const export_careers_endpoint = require('./endpoints/export_careers.endpoint');
+const export_research_endpoint = require('./endpoints/export_research.endpoint');
 
 app.get('/', check_db_endpoint);
 
 app.get('/favorite', get_favorite_endpoint);
-app.get('/favorite/export', export_favorite_endpoint)
+app.get('/favorite/export', export_favorite_endpoint);
 app.post('/favorite/save', save_favorite_endpoint);
 app.delete('/favorite/delete/:id', delete_favorite_endpoint);
 
-app.get('/export', export_careers_endpoint)
+app.get('/scraping/careers', export_careers_endpoint);
+app.get('/scraping/research', export_research_endpoint);
 
 module.exports = app.listen(port, () => {
     console.log(`Webservice listening on port ${port}`)

@@ -7,8 +7,17 @@
                     <mat-card-title>Careers at OpenAI</mat-card-title>
                 </mat-card-header>
                 <mat-card-actions align="end">
-                    <button mat-flat-button color='primary' (click)="on_export('csv')">Export CSV</button>
-                    <button mat-flat-button color='primary' (click)="on_export('json')">Export JSON</button>
+                    <button mat-flat-button color='primary' (click)="on_export_careers('csv')">Export CSV</button>
+                    <button mat-flat-button color='primary' (click)="on_export_careers('json')">Export JSON</button>
+                </mat-card-actions>
+            </mat-card>
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>Research index</mat-card-title>
+                </mat-card-header>
+                <mat-card-actions align="end">
+                    <button mat-flat-button color='primary' (click)="on_export_research_index('csv')">Export CSV</button>
+                    <button mat-flat-button color='primary' (click)="on_export_research_index('json')">Export JSON</button>
                 </mat-card-actions>
             </mat-card>
         </div>
