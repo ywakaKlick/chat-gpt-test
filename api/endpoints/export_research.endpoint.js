@@ -1,7 +1,7 @@
-const superagent = require("superagent");
 const cheerio = require("cheerio");
 const fs = require("fs");
 const path = require('path');
+const puppeteer = require("puppeteer");
 
 let output_path = './';
 
@@ -15,19 +15,18 @@ module.exports = async function (req, res) {
 
         create_output_path(output_path);
 
-        //TODO: Fix to get all pages. Currently only gets first page.
+        const page_data = await create_new_page();
+
         for (let i = 1; i < Number.MAX_SAFE_INTEGER; i++) {
-            const body = await get_html_body(base_url + '/research?page=' + i);
+            const url = base_url + '/research/?page=' + i;
+            const researchs = await scrape_researchs(url, page_data.page);
 
-            const researchs = await scrape_researchs(body);
-
-            if (!researchs) break;
+            if (researchs.length < 1) break;
 
             researchs.forEach(e => data.push(e));
             console.log(`${i} page`);
-
-            await new Promise((resolve => setTimeout(resolve, 5000)));
         }
+        await page_data.browser.close();
 
         const output = path.join(output_path, `research.${type}`);
         if (type === 'csv') {
@@ -45,9 +44,27 @@ module.exports = async function (req, res) {
         console.error(e);
     }
 
-    async function scrape_researchs(body) {
+    async function create_new_page() {
+
+        const width = 1024;
+        const height = 1600;
+
+        const browser = await puppeteer.launch({
+            headless: false,
+            'defaultViewport': { 'width': width, 'height': height }
+        });
+        const page = await browser.newPage();
+
+        return { page: page, browser: browser }
+    }
+
+    async function scrape_researchs(url, page) {
         let data = [];
-        const $ = cheerio.load(body);
+
+        await page.goto(url, { waitUntil: 'networkidle0' });
+
+        const html_data = await page.evaluate(() => document.documentElement.outerHTML);
+        const $ = cheerio.load(html_data);
 
         $('form > div:nth-of-type(3) > ul > li').each(function (index, element) {
             if (!$(element).text()) return;
@@ -65,18 +82,6 @@ module.exports = async function (req, res) {
             data.push(research);
         });
         return data;
-    }
-
-    async function get_html_body(url) {
-        const body = await superagent
-            .get(url)
-            .then(response => {
-                return response.text;
-            })
-            .catch((error) => {
-                throw (error);
-            });
-        return body;
     }
 
     function create_output_path(output_path) {
