@@ -31,4 +31,15 @@ export class ScrapingService {
       throw e;
     }
   }
+
+  async export_blog(type: string) {
+    try {
+      const url = `${environment.api}/scraping/blog`
+      let params = new HttpParams();
+      params = params.append('type', type);
+      return await this.http.get(url, { params: params, responseType: 'blob' }).pipe(take(1)).toPromise();
+    } catch (e) {
+      throw e;
+    }
+  }
 }

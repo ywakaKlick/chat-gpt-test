@@ -37,4 +37,17 @@ export class ScrapingComponent {
       this.snackbar.open('An error occurred while exporting', undefined, { duration: 3000 })
     }
   }
+
+  async on_export_blog(type: string) {
+    try {
+      const data = await this.scraping_service.export_blog(type);
+      if (!data) return;
+
+      saveAs(data, `blog.${type}`)
+      this.snackbar.open('Successfully exported!', undefined, { duration: 3000 })
+    } catch (e) {
+      console.log(e);
+      this.snackbar.open('An error occurred while exporting', undefined, { duration: 3000 })
+    }
+  }
 }
