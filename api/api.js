@@ -8,6 +8,7 @@ app.use(express.json());
 
 const check_db_endpoint = require('./endpoints/check_db_connection.endpoint');
 
+//TODO: Clean up the endpoints and duplicate modules or functions
 const get_favorite_endpoint = require('./endpoints/get_favorite.endpoint');
 const export_favorite_endpoint = require('./endpoints/export_favorite.endpoint');
 const save_favorite_endpoint = require('./endpoints/save_favorite.endpoint');
