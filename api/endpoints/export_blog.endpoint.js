@@ -67,14 +67,17 @@ module.exports = async function (req, res) {
         lists.each((col_index, col_element) => {
             let blog = {};
 
-            const url = $(col_element).find('a').attr('href');
-            blog['url'] = base_url + url;
-
             const title = $(col_element).find('h3').text();
-            blog['title'] = title;
+            if (title) blog['title'] = title;
 
-            const date = $(col_element).find('span').text();
-            blog['date'] = date;
+            const date = $(col_element).find('span').first().text();
+            if (date) blog['date'] = date;
+
+            const url = $(col_element).find('a').attr('href');
+            if (url) blog['url'] = base_url + url;
+
+            const img = $(col_element).find('img').attr('src');
+            if (img) blog['image'] = img;
 
             data.push(blog);
         })
